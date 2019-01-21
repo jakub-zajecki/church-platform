@@ -9,10 +9,10 @@ public class Intention {
     @Id
     @GeneratedValue
     private Long id;
-    private String infoIntencion;
+    private String infoIntention;
     private boolean paid;
     private boolean confirmed;
-    private BigDecimal intencionCost;
+    private BigDecimal intentionCost;
     @ManyToOne
     @JoinColumn(name = "MASS_ID")
     private Mass mass;

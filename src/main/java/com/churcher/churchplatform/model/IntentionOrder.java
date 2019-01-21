@@ -10,7 +10,7 @@ public class IntentionOrder {
     @GeneratedValue
     private Long id;
     @OneToOne
-    @JoinColumn(name = "INTENSION_ID")
+    @JoinColumn(name = "INTENTION_ID")
     private Intention intention;
     @OneToOne
     @JoinColumn(name = "USER_ID")

@@ -18,8 +18,7 @@ public class Church {
     private ChurchAddress churchAddress;
     @OneToMany(mappedBy = "church")
     private List<User> userList;
-    @OneToOne
-    @JoinColumn(name = "CALENDAR_ID")
-    private Calendar calendar;
+    @OneToMany(mappedBy = "church")
+    private List<ChurchDay> churchDayList;
     private BigDecimal minIntencionCost;
 }

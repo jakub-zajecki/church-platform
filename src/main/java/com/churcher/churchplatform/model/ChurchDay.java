@@ -18,8 +18,8 @@ public class ChurchDay {
     private DayType dayType;
     private String dayInfo;
     @ManyToOne
-    @JoinColumn(name = "CALENDAR_ID")
-    private Calendar calendar;
+    @JoinColumn(name = "CHURCH_ID")
+    private Church church;
 
 
 }
