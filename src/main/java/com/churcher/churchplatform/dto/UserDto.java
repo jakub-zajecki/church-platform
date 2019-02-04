@@ -1,18 +1,15 @@
-package com.churcher.churchplatform.model;
+package com.churcher.churchplatform.dto;
 
 import com.churcher.churchplatform.enums.UserRole;
 import com.churcher.churchplatform.enums.UserStatus;
-import org.hibernate.annotations.Cascade;
+import com.churcher.churchplatform.model.Church;
+import com.churcher.churchplatform.model.UserAddress;
+import com.churcher.churchplatform.model.UserDay;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-public class User {
+public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -21,24 +18,12 @@ public class User {
     private String password;
     private String token;
     private UserRole userRole;
-    @Enumerated
     private UserStatus userStatus;
-    @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    @JoinColumn(name = "USERADDRESS_ID")
     private UserAddress userAddress;
-    @OneToMany(mappedBy = "user")
     private List<UserDay> userDayList;
-    @ManyToOne
-    @JoinColumn(name = "CHURCH_ID")
     private Church church;
 
-    public User(){}
-
-    public Long getId() {
-        return id;
-    }
-
+    public UserDto(){}
 
     public String getFirstName() {
         return firstName;
@@ -54,6 +39,11 @@ public class User {
 
     public void setLastName(String secondName) {
         this.lastName = lastName;
+    }
+
+
+    public String getPassword() {
+        return password;
     }
 
     public String getPhoneNumber() {
@@ -78,14 +68,6 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getToken() {
