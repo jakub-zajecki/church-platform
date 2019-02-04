@@ -25,7 +25,16 @@ public class CalendarController {
         if(year == null){
             year = LocalDate.now().getYear();
         }
+        if(month <= 0){
+            month = 12;
+            year = year - 1;
+        }
+        if(month > 12){
+            month = 1;
+            year = year + 1;
+        }
         model.addAttribute("month", calendarService.getMonth(month, year));
+        model.addAttribute("holidays", calendarService.createHolidays(year));
         return "calendar";
     }
 }
