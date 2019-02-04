@@ -4,7 +4,9 @@ import com.churcher.churchplatform.dao.ChurchDayRepository;
 import com.churcher.churchplatform.dao.ChurchRepository;
 import com.churcher.churchplatform.enums.DayType;
 import com.churcher.churchplatform.model.ChurchDay;
+import com.churcher.churchplatform.model.HolidayMassTime;
 import com.churcher.churchplatform.model.Mass;
+import com.churcher.churchplatform.model.NormalDayMassTime;
 import com.churcher.churchplatform.service.ChurchDayService;
 
 import java.time.LocalDate;
@@ -39,17 +41,16 @@ public class ChurchDayServiceImpl implements ChurchDayService {
     public ChurchDay setNormalChurchDay(LocalDate localDate, Long churchId) {
         ChurchDay normalChurchDay = new ChurchDay();
         List<Mass> normalChurchDayMassList = new ArrayList<>();
-        List<LocalTime> normalChurchDayMassTimeList = churchRepository.findChurchById(churchId).getNormalChurchDayList();
-       for (LocalTime masstime : normalChurchDayMassTimeList){
+        List<NormalDayMassTime> normalChurchDayMassTimeList = churchRepository.findChurchById(churchId).getNormalChurchDayList();
+       for (NormalDayMassTime masstime : normalChurchDayMassTimeList){
            Mass normalDayMass = new Mass();
-           normalDayMass.setMassTime(masstime);
+           normalDayMass.setMassTime(masstime.getMassTime());
            normalChurchDayMassList.add(normalDayMass);
        }
         normalChurchDay.setLocalDate(localDate);
         normalChurchDay.setDayType(DayType.NORMAL);
         normalChurchDay.setChurch(churchRepository.findChurchById(churchId));
         normalChurchDay.setMassList(normalChurchDayMassList);
-
 
         return normalChurchDay;
     }
@@ -58,10 +59,10 @@ public class ChurchDayServiceImpl implements ChurchDayService {
     public ChurchDay setHolidayChurchDay(LocalDate localDate, Long churchId) {
         ChurchDay holidayChurchDay = new ChurchDay();
         List<Mass> holidayChurchDayMassList = new ArrayList<>();
-        List<LocalTime> holidayChurchDayMassTimeList = churchRepository.findChurchById(churchId).getHolidayChurchDayList();
-        for (LocalTime masstime : holidayChurchDayMassTimeList){
+        List<HolidayMassTime> holidayChurchDayMassTimeList = churchRepository.findChurchById(churchId).getHolidayChurchDayList();
+        for (HolidayMassTime masstime : holidayChurchDayMassTimeList){
             Mass holidayDayMass = new Mass();
-            holidayDayMass.setMassTime(masstime);
+            holidayDayMass.setMassTime(masstime.getMassTime());
             holidayChurchDayMassList.add(holidayDayMass);
         }
         holidayChurchDay.setLocalDate(localDate);

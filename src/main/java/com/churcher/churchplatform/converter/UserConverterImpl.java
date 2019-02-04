@@ -34,10 +34,12 @@ public class UserConverterImpl implements UserConverter {
         user.setPassword(DigestUtils.md5Hex(userDto.getPassword()));
         user.setToken(UUID.randomUUID().toString());
 
-        if(userDto.getUserRole()== UserRole.CHURCH_ADMIN){
-            user.setUserAddress(churchAddressConverter.convertToChurchAddress(userDto.getUserAddress()));
-        }
-        user.setUserAddress(u);
+//        if(userDto.getUserRole()== UserRole.CHURCH_ADMIN){
+//            user.setUserAddress(userAddressConverter.convertToUserAddress(userDto.getUserDtoAddress()));
+//        }
+//        user.setUserAddress(u);
+
+        user.setUserAddress(userAddressConverter.convertToUserAddress(userDto.getUserAddressDto()));
 
         return user;
     }
@@ -45,8 +47,11 @@ public class UserConverterImpl implements UserConverter {
     @Override
     public UserDto convertToUserDto(User user) {
 
-        UserDto userDto
+        UserDto userDto = new UserDto();
 
-        return null;
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+
+        return userDto;
     }
 }

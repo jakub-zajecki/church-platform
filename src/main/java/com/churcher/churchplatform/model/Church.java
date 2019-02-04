@@ -11,8 +11,10 @@ public class Church {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private List<LocalTime> normalChurchDayList;
-    private List<LocalTime> holidayChurchDayList;
+    @OneToMany(mappedBy = "church")
+    private List<NormalDayMassTime> normalChurchDayList;
+    @OneToMany(mappedBy = "church")
+    private List<HolidayMassTime> holidayChurchDayList;
     private int maxNumNormalChurchDayIntentions;
     private int maxNumHolidayChurchDayIntentions;
     private String churchName;
@@ -31,19 +33,19 @@ public class Church {
         return id;
     }
 
-    public List<LocalTime> getNormalChurchDayList() {
+    public List<NormalDayMassTime> getNormalChurchDayList() {
         return normalChurchDayList;
     }
 
-    public void setNormalChurchDayList(List<LocalTime> normalChurchDayList) {
+    public void setNormalChurchDayList(List<NormalDayMassTime> normalChurchDayList) {
         this.normalChurchDayList = normalChurchDayList;
     }
 
-    public List<LocalTime> getHolidayChurchDayList() {
+    public List<HolidayMassTime> getHolidayChurchDayList() {
         return holidayChurchDayList;
     }
 
-    public void setHolidayChurchDayList(List<LocalTime> holidayChurchDayList) {
+    public void setHolidayChurchDayList(List<HolidayMassTime> holidayChurchDayList) {
         this.holidayChurchDayList = holidayChurchDayList;
     }
 

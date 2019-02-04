@@ -1,0 +1,61 @@
+.calendar {
+    max-width: 600px;
+    margin: 0px auto;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.day {
+    display: block;
+    float: left;
+    height: 80px;
+    width: 14.28%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.holiday {
+    display: block;
+    float: left;
+    height: 80px;
+    width: 14.28%;
+    box-sizing: border-box;
+    text-align: center;
+    color: red;
+}
+
+a:hover {
+    text-decoration: none;
+    background: #FCF7F7;
+}
+
+.holiday:hover {
+    color: red;
+}
+
+.calendar-header {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-date {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.day-number {
+    margin: auto;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

@@ -19,7 +19,7 @@ public class UserDto {
     private String token;
     private UserRole userRole;
     private UserStatus userStatus;
-    private UserAddress userAddress;
+    private UserAddressDto userAddressDto;
     private List<UserDay> userDayList;
     private Church church;
 
@@ -94,12 +94,12 @@ public class UserDto {
         this.userStatus = userStatus;
     }
 
-    public UserAddress getUserAddress() {
-        return userAddress;
+    public UserAddressDto getUserAddressDto() {
+        return userAddressDto;
     }
 
-    public void setUserAddress(UserAddress userAddress) {
-        this.userAddress = userAddress;
+    public void setUserAddressDto(UserAddressDto userAddressDto) {
+        this.userAddressDto = userAddressDto;
     }
 
     public List<UserDay> getUserDayList() {

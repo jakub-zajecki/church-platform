@@ -29,7 +29,7 @@
     <a th:each="date : ${month}"
        th:class="${holidays.containsKey(date) ? 'holiday' : 'day'}"
        th:with="enum = ${holidays.containsKey(date) ? T(com.churcher.churchplatform.enums.DayType).HOLIDAY
-                        : T(com.churcher.churchplatform.enums.DayType).WEEKDAY}"
+                        : T(com.churcher.churchplatform.enums.DayType).NORMAL}"
        th:href="@{/dayPage(date=${date.toString()}, churchId=1, dayType=${enum})}">
     <div class="day-number" th:text="${date.getDayOfMonth()}"></div>
     </a>
