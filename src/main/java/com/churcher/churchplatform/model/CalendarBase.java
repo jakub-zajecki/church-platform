@@ -30,23 +30,6 @@ public class CalendarBase {
         return calendar;
     }
 
-    private static LocalDate calculateEaster(int year){
-        int firstFactor = year % 19;
-        int secondFactor = year % 4;
-        int thirdFactor = year % 7;
-        int fourthFactor = (firstFactor * 19 + 24) % 30;
-        int fifthFactor = (2 * secondFactor + 4 * thirdFactor + 6 * fourthFactor + 5) % 7;
-        LocalDate easterDay = LocalDate.of(year, 3,22).plusDays(fourthFactor).plusDays(fifthFactor);
-        return easterDay;
-    }
-
-    private static Map<LocalDate, Holidays> createHolidays(int year){
-        Map<LocalDate, Holidays> holidays = new HashMap<>();
-        holidays.put(calculateEaster(year), Holidays.EASTER_FIRST);
-        holidays.put(LocalDate.of(year, 12, 25), Holidays.CHRISTMAS_FIRST);
-        return holidays;
-    }
-
 //    private static void checkForHolidays(int month, int year){
 //        List<LocalDate> monthList = getMonth(month, year);
 //        Map<LocalDate, Holidays> holidays = createHolidays(year);

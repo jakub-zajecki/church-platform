@@ -21,4 +21,5 @@ public class Church {
     @OneToMany(mappedBy = "church")
     private List<ChurchDay> churchDayList;
     private BigDecimal minIntencionCost;
+
 }
