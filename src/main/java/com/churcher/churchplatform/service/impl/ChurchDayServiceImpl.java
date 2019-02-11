@@ -8,14 +8,15 @@ import com.churcher.churchplatform.model.HolidayMassTime;
 import com.churcher.churchplatform.model.Mass;
 import com.churcher.churchplatform.model.NormalDayMassTime;
 import com.churcher.churchplatform.service.ChurchDayService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ChurchDayServiceImpl implements ChurchDayService {
-
 
     private ChurchDayRepository churchDayRepository;
     private ChurchRepository churchRepository;
@@ -66,7 +67,7 @@ public class ChurchDayServiceImpl implements ChurchDayService {
             holidayChurchDayMassList.add(holidayDayMass);
         }
         holidayChurchDay.setLocalDate(localDate);
-        holidayChurchDay.setDayType(DayType.NORMAL);
+        holidayChurchDay.setDayType(DayType.HOLIDAY);
         holidayChurchDay.setChurch(churchRepository.findChurchById(churchId));
         holidayChurchDay.setMassList(holidayChurchDayMassList);
 

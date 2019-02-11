@@ -15,8 +15,8 @@ public class Church {
     private List<NormalDayMassTime> normalChurchDayList;
     @OneToMany(mappedBy = "church")
     private List<HolidayMassTime> holidayChurchDayList;
-    private int maxNumNormalChurchDayIntentions;
-    private int maxNumHolidayChurchDayIntentions;
+    private Integer maxNumNormalChurchDayIntentions;
+    private Integer maxNumHolidayChurchDayIntentions;
     private String churchName;
     private String parsonName;
     private String officeOpenHours;

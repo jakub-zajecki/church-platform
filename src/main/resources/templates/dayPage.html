@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="${churchName}">Church Name</h1>
+
+<form action="#" method="GET">
+    <div th:each="time : ${timeList}">
+        <input th:id="${time.id}" type="radio" name="time" th:value="${time.massTime}">
+        <label th:for="${time.id}" th:text="${time.massTime}"></label>
+    </div>
+    <textarea name="intentionText"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

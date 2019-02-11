@@ -17,13 +17,11 @@ public class ChurchAddress {
     private String postalCode;
     private String city;
 
-
     public ChurchAddress(){}
 
     public Long getId() {
         return id;
     }
-
 
     public String getStreet() {
         return street;
