@@ -3,7 +3,6 @@ package com.churcher.churchplatform.dto;
 import com.churcher.churchplatform.enums.UserRole;
 import com.churcher.churchplatform.enums.UserStatus;
 import com.churcher.churchplatform.model.Church;
-import com.churcher.churchplatform.model.UserAddress;
 import com.churcher.churchplatform.model.UserDay;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class UserDto {
     private String token;
     private UserRole userRole;
     private UserStatus userStatus;
-    private UserAddressDto userAddressDto;
+    private AddressDto addressDto;
     private List<UserDay> userDayList;
     private Church church;
 
@@ -94,12 +93,12 @@ public class UserDto {
         this.userStatus = userStatus;
     }
 
-    public UserAddressDto getUserAddressDto() {
-        return userAddressDto;
+    public AddressDto getddressDto() {
+        return addressDto;
     }
 
-    public void setUserAddressDto(UserAddressDto userAddressDto) {
-        this.userAddressDto = userAddressDto;
+    public void setddressDto(AddressDto addressDto) {
+        this.addressDto = addressDto;
     }
 
     public List<UserDay> getUserDayList() {

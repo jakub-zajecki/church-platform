@@ -1,6 +1,6 @@
 package com.churcher.churchplatform.dto;
 
-public class ChurchAddressDto {
+public class AddressDto {
 
     private Long id;
     private String street;
@@ -9,12 +9,11 @@ public class ChurchAddressDto {
     private String postalCode;
     private String city;
 
-    public ChurchAddressDto() {}
+    public AddressDto() {}
 
     public Long getId() {
         return id;
     }
-
 
     public String getStreet() {
         return street;

@@ -21,8 +21,8 @@ public class Church {
     private String parsonName;
     private String officeOpenHours;
     @OneToOne
-    @JoinColumn(name = "CHURCHADDRESS_ID")
-    private ChurchAddress churchAddress;
+    @JoinColumn(name = "ADDRESS_ID")
+    private Address address;
     @OneToMany(mappedBy = "church")
     private List<User> userList;
     @OneToMany(mappedBy = "church")
@@ -89,12 +89,12 @@ public class Church {
         this.officeOpenHours = officeOpenHours;
     }
 
-    public ChurchAddress getChurchAddress() {
-        return churchAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setChurchAddress(ChurchAddress churchAddress) {
-        this.churchAddress = churchAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public List<User> getUserList() {

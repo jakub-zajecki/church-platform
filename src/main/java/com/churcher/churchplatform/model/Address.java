@@ -1,7 +1,15 @@
-package com.churcher.churchplatform.dto;
+package com.churcher.churchplatform.model;
 
-public class UserAddressDto {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String street;
     private int houseNumber;
@@ -9,15 +17,12 @@ public class UserAddressDto {
     private String postalCode;
     private String city;
 
-    public UserAddressDto(){}
+    public Address(){}
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getStreet() {
         return street;

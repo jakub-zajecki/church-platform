@@ -25,8 +25,8 @@ public class User {
     private UserStatus userStatus;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    @JoinColumn(name = "USERADDRESS_ID")
-    private UserAddress userAddress;
+    @JoinColumn(name = "ADDRESS_ID")
+    private Address address;
     @OneToMany(mappedBy = "user")
     private List<UserDay> userDayList;
     @ManyToOne
@@ -112,12 +112,12 @@ public class User {
         this.userStatus = userStatus;
     }
 
-    public UserAddress getUserAddress() {
-        return userAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setUserAddress(UserAddress userAddress) {
-        this.userAddress = userAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public List<UserDay> getUserDayList() {

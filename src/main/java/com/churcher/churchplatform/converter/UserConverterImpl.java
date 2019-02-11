@@ -1,25 +1,21 @@
 package com.churcher.churchplatform.converter;
 
 import com.churcher.churchplatform.dto.UserDto;
-import com.churcher.churchplatform.enums.UserRole;
-import com.churcher.churchplatform.model.ChurchAddress;
 import com.churcher.churchplatform.model.User;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
-
 public class UserConverterImpl implements UserConverter {
 
-    private UserAddressConverter userAddressConverter;
-    private ChurchAddressConverter churchAddressConverter;
+    private AddressConverter addressConverter;
 
 
     @Autowired
-    public UserConverterImpl(UserAddressConverter userAddressConverter, ChurchAddressConverter churchAddressConverter) {
-        this.userAddressConverter = userAddressConverter;
-        this.churchAddressConverter = churchAddressConverter;
+    public UserConverterImpl(AddressConverter addressConverterter) {
+        this.addressConverter = addressConverter;
     }
 
     @Override
@@ -39,7 +35,7 @@ public class UserConverterImpl implements UserConverter {
 //        }
 //        user.setUserAddress(u);
 
-        user.setUserAddress(userAddressConverter.convertToUserAddress(userDto.getUserAddressDto()));
+        user.setAddress(addressConverter.convertToAddress(userDto.getddressDto()));
 
         return user;
     }
