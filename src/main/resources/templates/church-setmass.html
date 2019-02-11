@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{../css/calendar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/modal.css}"/>
+</head>
+<body>
+
+<form th:object="${church}" th:action="@{/save-mass}" method="POST">
+
+    <input id="maxNumNormalChurchDayIntentions" th:field="*{maxNumNormalChurchDayIntentions}">
+    <input id="maxNumHolidayChurchDayIntentions"  th:field="*{maxNumHolidayChurchDayIntentions}">
+    <button type="submit" >Save</button>
+</form>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th >Normal Day</th>
+            <th >Holiday</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hour : ${masslistNormal}">
+                <td th:text="${hour.getMassTime()}"></td>
+
+            <td><form th:action="@{/delate-masshournormal}" method="POST"><input type="hidden" name="id" th:value="${hour.id}">
+                <input type="submit" value="Usuń"></form></td>
+
+
+
+        </tr>
+        <tr><button id="popUp">Dodaj</button></tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>Holiday</th>
+            <th>Delate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hour : ${masslistHoliday}">
+            <td th:text="${hour.getMassTime()}"></td>
+
+            <td><form th:action="@{/delate-masshourholiday}" method="POST"><input type="hidden" name="id" th:value="${hour.id}">
+                <input type="submit" value="Usuń"></form></td>
+
+
+
+        </tr>
+
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <p>Post Deletion</p>
+        </div>
+        <div class="modal-body">
+            <form th:action="@{/add-massTime}" method="POST">
+            <label for="normalDay">Normal Day</label>
+            <input id="normalDay" type="radio" name="dayType" th:value="${T(com.churcher.churchplatform.enums.DayType).NORMAL}" checked required />
+            <label for="holiday">Holiday</label>
+            <input id="holiday" type="radio" name="dayType" th:value="${T(com.churcher.churchplatform.enums.DayType).HOLIDAY}" />
+            <label for="timeSet">Wybierz godzinę:</label>
+            <input type="time" name="localTime" id="timeSet">
+                <input type="submit" class="button button-decision" value="Save">
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+<script th:src="@{../js/modal.js}"></script>>
+</body>
+</html>
