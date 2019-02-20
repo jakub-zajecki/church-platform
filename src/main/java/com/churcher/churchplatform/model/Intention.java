@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class Intention {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String infoIntention;
     private boolean paid;
@@ -16,6 +16,9 @@ public class Intention {
     @ManyToOne
     @JoinColumn(name = "MASS_ID")
     private Mass mass;
+    @ManyToOne
+    @JoinColumn(name = "USERDAY_ID")
+    private UserDay userDay;
 
     public Long getId() {
         return id;
@@ -63,5 +66,13 @@ public class Intention {
 
     public void setMass(Mass mass) {
         this.mass = mass;
+    }
+
+    public UserDay getUserDay() {
+        return userDay;
+    }
+
+    public void setUserDay(UserDay userDay) {
+        this.userDay = userDay;
     }
 }

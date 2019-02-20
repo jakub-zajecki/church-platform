@@ -4,6 +4,7 @@ import com.churcher.churchplatform.model.Church;
 import com.churcher.churchplatform.model.HolidayMassTime;
 
 import java.time.LocalTime;
+import java.util.List;
 
 public interface HolidayMassTimeService {
 
@@ -12,4 +13,6 @@ public interface HolidayMassTimeService {
     public void saveHolidayTimeMass(HolidayMassTime holidayMassTime);
 
     public HolidayMassTime createHolidayMassTime(LocalTime localTime, Church church);
+
+    List<HolidayMassTime> getAllByChurchId(Long id);
 }

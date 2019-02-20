@@ -2,13 +2,14 @@ package com.churcher.churchplatform.model;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Mass {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalTime massTime;
     private int maxIntesionNum;

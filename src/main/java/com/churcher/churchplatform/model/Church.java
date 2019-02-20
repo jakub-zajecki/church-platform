@@ -3,6 +3,7 @@ package com.churcher.churchplatform.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity

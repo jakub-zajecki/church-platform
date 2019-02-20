@@ -75,5 +75,8 @@ public class ChurchDayServiceImpl implements ChurchDayService {
         return holidayChurchDay;
     }
 
-
+    @Override
+    public void save(ChurchDay churchDay) {
+        churchDayRepository.save(churchDay);
+    }
 }

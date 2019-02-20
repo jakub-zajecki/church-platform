@@ -34,7 +34,6 @@ public class ChurchMassController {
     @GetMapping("/church-setmass")
     public String showChurchGeneralMassSettings(Model model){
 
-
         model.addAttribute("church",churchService.findChurchById(1L));
         model.addAttribute("masslistNormal",churchService.findChurchById(1L).getNormalChurchDayList());
         model.addAttribute("masslistHoliday",churchService.findChurchById(1L).getHolidayChurchDayList());

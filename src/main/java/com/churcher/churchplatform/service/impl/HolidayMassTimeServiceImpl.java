@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class HolidayMassTimeServiceImpl implements HolidayMassTimeService {
@@ -38,5 +41,12 @@ public class HolidayMassTimeServiceImpl implements HolidayMassTimeService {
         holidayMassTime.setChurch(church);
 
         return holidayMassTime;
+    }
+
+    @Override
+    public List<HolidayMassTime> getAllByChurchId(Long id) {
+        List<HolidayMassTime> list = holidayMassTimeRepository.findAllByChurchId(id);
+        list.sort(Comparator.comparing(HolidayMassTime::getMassTime));
+        return list;
     }
 }

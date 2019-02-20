@@ -12,4 +12,6 @@ public interface ChurchDayService {
     public ChurchDay setNormalChurchDay(LocalDate localDate, Long churchId);
     public ChurchDay setHolidayChurchDay(LocalDate localDate, Long churchId);
 
+    void save(ChurchDay churchDay);
+
 }
