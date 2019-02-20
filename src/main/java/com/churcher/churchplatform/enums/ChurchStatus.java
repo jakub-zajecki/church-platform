@@ -1,7 +1,6 @@
 package com.churcher.churchplatform.enums;
 
-public enum UserStatus {
+public enum ChurchStatus {
 
     NEW,CONFIRMED,ACTIVATED
-
 }

@@ -23,4 +23,9 @@ public class ChurchServiceImpl implements ChurchService {
     public void saveChurch(Church church) {
         churchRepository.save(church);
     }
+
+    @Override
+    public Church findChurchByToken(String token) {
+        return churchRepository.findChurchByChurchToken(token);
+    }
 }

@@ -1,5 +1,7 @@
 package com.churcher.churchplatform.model;
 
+import com.churcher.churchplatform.enums.ChurchStatus;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalTime;
@@ -19,7 +21,9 @@ public class Church {
     private Integer maxNumHolidayChurchDayIntentions;
     private String churchName;
     private String parsonName;
+    private ChurchStatus churchStatus;
     private String officeOpenHours;
+    private String churchToken;
     @OneToOne
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
@@ -47,6 +51,14 @@ public class Church {
 
     public void setHolidayChurchDayList(List<HolidayMassTime> holidayChurchDayList) {
         this.holidayChurchDayList = holidayChurchDayList;
+    }
+
+    public String getChurchToken() {
+        return churchToken;
+    }
+
+    public void setChurchToken(String churchToken) {
+        this.churchToken = churchToken;
     }
 
     public int getMaxNumNormalChurchDayIntentions() {
@@ -95,6 +107,14 @@ public class Church {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public ChurchStatus getChurchStatus() {
+        return churchStatus;
+    }
+
+    public void setChurchStatus(ChurchStatus churchStatus) {
+        this.churchStatus = churchStatus;
     }
 
     public List<User> getUserList() {
