@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class IntentionOrder {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     @JoinColumn(name = "INTENTION_ID")

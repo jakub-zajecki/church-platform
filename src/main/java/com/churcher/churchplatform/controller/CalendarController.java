@@ -3,14 +3,13 @@ package com.churcher.churchplatform.controller;
 import com.churcher.churchplatform.enums.DayType;
 import com.churcher.churchplatform.model.Church;
 import com.churcher.churchplatform.model.ChurchDay;
+import com.churcher.churchplatform.model.DefaultMassTime;
 import com.churcher.churchplatform.model.NormalDayMassTime;
-import com.churcher.churchplatform.service.CalendarService;
-import com.churcher.churchplatform.service.ChurchDayService;
+import com.churcher.churchplatform.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
@@ -23,11 +22,17 @@ public class CalendarController {
 
     private CalendarService calendarService;
     private ChurchDayService churchDayService;
+    private ChurchService churchService;
+    private HolidayMassTimeService holidayMassTimeService;
+    private NormalDayMassTimeService normalDayMassTimeService;
 
     @Autowired
-    public CalendarController(CalendarService calendarService, ChurchDayService churchDayService) {
+    public CalendarController(CalendarService calendarService, ChurchDayService churchDayService, ChurchService churchService, HolidayMassTimeService holidayMassTimeService, NormalDayMassTimeService normalDayMassTimeService) {
         this.calendarService = calendarService;
         this.churchDayService = churchDayService;
+        this.churchService = churchService;
+        this.holidayMassTimeService = holidayMassTimeService;
+        this.normalDayMassTimeService = normalDayMassTimeService;
     }
 
     @GetMapping("/calendar")
@@ -57,30 +62,18 @@ public class CalendarController {
 
         LocalDate localDate = LocalDate.parse(date);
         ChurchDay day = churchDayService.churchDayBuilder(localDate, churchId, dayType);
+        Church church = churchService.findChurchById(churchId);
 
-        System.out.println(day.getDayType());
-        System.out.println(day.getLocalDate());
+        List<? extends DefaultMassTime> timelist;
+        if(dayType == DayType.NORMAL){
+            timelist = church.getNormalChurchDayList();
+        } else {
+            timelist = church.getHolidayChurchDayList();
+        }
 
-        Church church = new Church();
-        church.setChurchName("Parafia");
-        model.addAttribute("churchName", church.getChurchName());
-
-        List<NormalDayMassTime> list = new ArrayList<>();
-
-        NormalDayMassTime d1 = new NormalDayMassTime();
-        d1.setChurch(church);
-        d1.setMassTime(LocalTime.of(10, 0));
-        NormalDayMassTime d2 = new NormalDayMassTime();
-        d2.setChurch(church);
-        d2.setMassTime(LocalTime.of(13, 0));
-        NormalDayMassTime d3 = new NormalDayMassTime();
-        d3.setChurch(church);
-        d3.setMassTime(LocalTime.of(17, 0));
-        list.add(d1);
-        list.add(d2);
-        list.add(d3);
-
-        model.addAttribute("timeList", list);
+        model.addAttribute("church", church);
+        model.addAttribute("churchDay", day);
+        model.addAttribute("timeList", timelist);
         return "dayPage";
     }
 }

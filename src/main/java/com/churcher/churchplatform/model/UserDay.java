@@ -8,11 +8,10 @@ import java.util.List;
 public class UserDay {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate localDate;
-    @OneToMany
-    @JoinColumn(name = "INTENTION_ID")
+    @OneToMany(mappedBy = "userDay")
     private List<Intention> userPaidIntencionList;
     @ManyToOne
     @JoinColumn(name = "USER_ID")

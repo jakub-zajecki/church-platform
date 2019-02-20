@@ -15,6 +15,7 @@ public class ChurchDay {
     private LocalDate localDate;
     @OneToMany(mappedBy = "churchDay")
     private List<Mass> massList;
+    @Enumerated(EnumType.STRING)
     private DayType dayType;
     private String dayInfo;
     @ManyToOne
