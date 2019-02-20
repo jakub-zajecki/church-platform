@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ChurchRepository extends CrudRepository<Church,Long> {
 
     public Church findChurchById(Long churchId);
+    public Church findChurchByChurchToken(String token);
 }
