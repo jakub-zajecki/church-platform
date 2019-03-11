@@ -5,9 +5,13 @@ import com.churcher.churchplatform.model.User;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+@Component
 public class UserConverterImpl implements UserConverter {
 
     private AddressConverter addressConverter;
@@ -49,5 +53,17 @@ public class UserConverterImpl implements UserConverter {
         userDto.setLastName(user.getLastName());
 
         return userDto;
+    }
+
+    @Override
+    public List<UserDto> convertToUsersDtoList(List<User> users) {
+
+        List<UserDto> usersDto = new ArrayList<>();
+
+        for(User user : users){
+            usersDto.add(convertToUserDto(user));
+        }
+
+        return usersDto;
     }
 }

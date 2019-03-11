@@ -1,6 +1,7 @@
 package com.churcher.churchplatform.model;
 
 import com.churcher.churchplatform.enums.ChurchStatus;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,16 +23,20 @@ public class Church {
     private Integer maxNumHolidayChurchDayIntentions;
     private String churchName;
     private String parsonName;
+    @Enumerated(EnumType.STRING)
     private ChurchStatus churchStatus;
     private String officeOpenHours;
     private String churchToken;
     @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
     @OneToMany(mappedBy = "church")
-    private List<User> userList;
+    private List<User> userList ;
     @OneToMany(mappedBy = "church")
     private List<ChurchDay> churchDayList;
+    @OneToMany(mappedBy = "church")
+    private List<Priest> priestList;
     private BigDecimal minIntencionCost;
 
     public Long getId() {
@@ -140,5 +145,13 @@ public class Church {
 
     public void setMinIntencionCost(BigDecimal minIntencionCost) {
         this.minIntencionCost = minIntencionCost;
+    }
+
+    public List<Priest> getPriestList() {
+        return priestList;
+    }
+
+    public void setPriestList(List<Priest> priestList) {
+        this.priestList = priestList;
     }
 }

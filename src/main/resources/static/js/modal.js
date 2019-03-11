@@ -1,14 +1,14 @@
-var modal = document.getElementById('myModal');
-var btn = document.getElementById("popUp");
+var modalDay = document.getElementById('myModal');
+var btnDay = document.getElementById("popUp");
 
 
 
-btn.onclick = function() {
-    modal.style.display = "block";
+btnDay.onclick = function() {
+    modalDay.style.display = "block";
 }
 
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == modalDay) {
+        modalDay.style.display = "none";
     }
 }

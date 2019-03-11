@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public interface ChurchDayService {
 
     public ChurchDay churchDayBuilder(LocalDate localDate, Long churchId, DayType dayType);
-
+    public ChurchDay findByLocalDateAndChurchId(LocalDate localDate,Long churchId);
     public ChurchDay setNormalChurchDay(LocalDate localDate, Long churchId);
     public ChurchDay setHolidayChurchDay(LocalDate localDate, Long churchId);
 

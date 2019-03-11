@@ -39,6 +39,11 @@ public class ChurchDayServiceImpl implements ChurchDayService {
     }
 
     @Override
+    public ChurchDay findByLocalDateAndChurchId(LocalDate localDate, Long churchId) {
+        return churchDayRepository.findByLocalDateAndChurchId(localDate,churchId);
+    }
+
+    @Override
     public ChurchDay setNormalChurchDay(LocalDate localDate, Long churchId) {
         ChurchDay normalChurchDay = new ChurchDay();
         List<Mass> normalChurchDayMassList = new ArrayList<>();

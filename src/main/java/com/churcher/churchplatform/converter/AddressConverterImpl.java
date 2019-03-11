@@ -2,7 +2,9 @@ package com.churcher.churchplatform.converter;
 
 import com.churcher.churchplatform.dto.AddressDto;
 import com.churcher.churchplatform.model.Address;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AddressConverterImpl implements AddressConverter {
 
     @Override

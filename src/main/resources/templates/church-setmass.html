@@ -65,6 +65,32 @@
     </table>
 </div>
 
+<table>
+    <thead>
+    <tr>
+        <th>Priest</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="priest : ${priestList}">
+        <td th:text="${priest.getName()} + ' ' + ${priest.getLastName()}"></td>
+
+        <td><form th:action="@{/delate-priest}" method="POST"><input type="hidden" name="id" th:value="${priest.id}">
+            <input type="submit" value="Usuń"></form></td>
+
+
+
+    </tr>
+    <tr>
+        <td><button id="priestAdd">Dodaj</button></td>
+    </tr>
+
+
+
+    </tbody>
+</table>
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -91,6 +117,32 @@
     </div>
 
 </div>
-<script th:src="@{../js/modal.js}"></script>>
+
+<!-- The Modal Priest Add -->
+<div id="modalPriest" class="modal">
+
+    <!-- Modal content Priest Add -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <p>Post Deletion</p>
+        </div>
+        <div class="modal-body">
+            <form th:action="@{/add-priest}" th:object="${priest}" method="POST">
+                <label for="priestName">Normal Day</label>
+                <input id="priestName" type="text" th:field="*{name}" />
+                <label for="priestLastName">Holiday</label>
+                <input id="priestLastName" type="text" th:field="*{lastName}" />
+                <input type="submit" class="button button-decision" value="Save">
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+<script th:src="@{../js/modal.js}"></script>
+<script th:src="@{../js/addpriestmodal.js}"></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{../css/index.css}"/>
+</head>
+<body>
+
+<form class="form-horizontal" th:action="@{/church-registration}" th:object="${churchDto}" method="POST">
+    <div class="form-profile">
+
+        <div class="form-group">
+            <label for="churchName" class="col-sm-2 control-label" >Nazwa Kościoła</label>
+            <input class="form-control" id="churchName" th:field="*{churchName}">
+
+        </div>
+        <div class="form-group">
+            <label for="parsonName" class="col-sm-2 control-label" >Proboszcz</label>
+            <input  class="form-control" id="parsonName" th:field="*{parsonName}">
+        </div>
+        <div class="form-group">
+            <label for="churchStreet" class="col-sm-2 control-label" >Ulica</label>
+            <input  class="form-control" id="churchStreet" th:field="*{churchStreet}">
+            <p  th:if="${#fields.hasErrors('churchStreet')}" th:errors="*{churchStreet}"
+            >Validation error</p>
+        </div>
+        <div class="form-group">
+            <label for="postalCode" class="col-sm-2 control-label" >Kod pocztowy</label>
+            <input  class="form-control" id="postalCode" th:field="*{postalCode}">
+            <p  th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"
+            >Validation error</p>
+        </div>
+        <div class="form-group">
+            <label for="churchBuildingNumber" class="col-sm-2 control-label" >Numer budynku</label>
+            <input  class="form-control" id="churchBuildingNumber" th:field="*{churchBuildingNumber}">
+        </div>
+        <div class="form-group">
+            <label for="city" class="col-sm-2 control-label" >Numer budynku</label>
+            <input  class="form-control" id="city" th:field="*{city}">
+        </div>
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label" >Imię</label>
+            <input  class="form-control" id="firstname" th:field="*{firstName}">
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label" >Nazwisko</label>
+            <input  class="form-control" id="lastname" th:field="*{lastName}">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber" class="col-sm-2 control-label" >Numer Telefonu</label>
+            <input class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+            <p  th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+            >Validation error</p>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label" >E-mail</label>
+            <input  class="form-control" id="email" th:field="*{mail}">
+            <p  th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"
+            >Validation error</p>
+        </div>
+        <div class="form-group">
+            <label for="login" class="col-sm-2 control-label" >Login</label>
+            <input class="form-control" id="login" th:field="*{login}">
+            <p  th:if="${#fields.hasErrors('login')}" th:errors="*{login}"
+            >Validation error</p>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label" >Password</label>
+            <input type="password" class="form-control" id="password" th:field="*{password}">
+
+        </div>
+        <div class="form-group">
+            <label for="matchingpassword" class="col-sm-2 control-label" >Matching Password</label>
+            <input type="password" class="form-control" id="matchingpassword" th:field="*{matchingPassword}">
+            <p  th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"
+            >Validation error</p>
+        </div>
+
+        <div class="form-group">
+            <div class="log">
+                <button class="logIn" type="submit" >REGISTER</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

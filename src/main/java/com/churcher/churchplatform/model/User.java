@@ -20,8 +20,9 @@ public class User {
     private String login;
     private String password;
     private String token;
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.PERSIST)

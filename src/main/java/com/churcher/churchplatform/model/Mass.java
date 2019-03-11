@@ -11,6 +11,8 @@ public class Mass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
+    private Priest priest;
     private LocalTime massTime;
     private int maxIntesionNum;
     @ManyToOne
@@ -54,5 +56,13 @@ public class Mass {
 
     public void setIntentionList(List<Intention> intentionList) {
         this.intentionList = intentionList;
+    }
+
+    public Priest getPriest() {
+        return priest;
+    }
+
+    public void setPriest(Priest priest) {
+        this.priest = priest;
     }
 }

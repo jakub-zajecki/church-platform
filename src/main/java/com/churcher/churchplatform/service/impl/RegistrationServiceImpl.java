@@ -13,11 +13,15 @@ import com.churcher.churchplatform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.UUID;
 
+
+@Service
 public class RegistrationServiceImpl implements RegistrationService {
 
     private UserService userService;
@@ -56,7 +60,11 @@ public class RegistrationServiceImpl implements RegistrationService {
         church.setChurchStatus(ChurchStatus.NEW);
         church.setChurchToken(UUID.randomUUID().toString());
         church.setAddress(address);
+        church.setUserList(new ArrayList<>());
         church.getUserList().add(user);
+
+        userService.saveUser(user);
+        churchService.saveChurch(church);
 
         String confirmationTitle = messageSource.getMessage("mail.church.confirmation.title", new Object[] {
                 church.getChurchName()}, Locale.getDefault());
@@ -65,6 +73,8 @@ public class RegistrationServiceImpl implements RegistrationService {
                 church.getChurchName(),user.getToken(),church.getChurchToken()}, Locale.getDefault());
 
         emailService.sendRegistrationMessage(user.getMail(), confirmationTitle, mailText);
+
+
     }
 
     @Override
