@@ -90,10 +90,9 @@
 
         <tr th:each="massTime:${massTimeList}">
             <td th:text="${massTime.massTime}"></td>
+            <td class="droptarget" ondragstart="dragStart(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td></td>
             <td></td>
-            <td></td>
-
         </tr>
 
         </thead>
@@ -103,6 +102,51 @@
     </table>
 </div>
 
+<div class="droptarget" ondrop="dropBack(event)" ondragover="allowDrop(event)" th:each="priest : ${priestList}">
+    <div ondragstart="dragStart(event)" draggable="true" th:id="${priest.getId()}"
+         th:text="${priest.name} + ' ' + ${priest.lastName}"></div>
+</div>
+
+<div id="empty" ondrop="drop2(event)" ondragover="allowDrop2(event)" style="border : 3px solid black; width: 300px; height: 300px;"></div>
+
+<script>
+    function dragStart(event) {
+        event.dataTransfer.clearData();
+        event.dataTransfer.setData("Text", event.target.id);
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function allowDrop2(event){
+        event.preventDefault();
+    }
+
+    function drop2(event){
+        event.preventDefault();
+        var data = event.dataTransfer.getData("Text");
+        var e1 =  document.getElementById(data);
+        e1.parentNode.removeChild(e1);
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        event.dataTransfer.effectAllowed = "copy";
+        var data = event.dataTransfer.getData("Text");
+
+        var nodeCopy = document.getElementById(data).cloneNode(true);
+        var id = 1;
+        nodeCopy.id = id++;
+        event.target.appendChild(nodeCopy);
+    }
+    function dropBack(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("Text");
+        // event.target.appendChild(document.getElementById(data));
+    }
+
+</script>
 
 </body>
 </html>

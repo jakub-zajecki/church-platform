@@ -8,5 +8,6 @@ public interface MassService {
 
     void save(Mass mass);
     Mass createMass(LocalTime massTime, Long churchDayId);
+    Mass findByMassTimeAndChurchDayId(LocalTime massTime, Long churchDayId);
 
 }

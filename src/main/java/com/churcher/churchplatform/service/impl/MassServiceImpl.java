@@ -37,4 +37,9 @@ public class MassServiceImpl implements MassService {
         }
         return mass;
     }
+
+    @Override
+    public Mass findByMassTimeAndChurchDayId(LocalTime massTime, Long churchDayId) {
+        return massRepository.findByMassTimeAndChurchDayId(massTime, churchDayId);
+    }
 }

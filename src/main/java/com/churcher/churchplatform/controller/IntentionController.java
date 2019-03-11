@@ -35,6 +35,12 @@ public class IntentionController {
                                 @RequestParam String intentionText, @RequestParam BigDecimal intentionCost){
         churchDayService.save(churchDay);
         Mass mass = massService.createMass(time, churchDay.getId());
+
+        DayType dayType = churchDay.getDayType();
+        int maxIntentionNumber = dayType == DayType.NORMAL ? churchDay.getChurch().getMaxNumNormalChurchDayIntentions() :
+                churchDay.getChurch().getMaxNumHolidayChurchDayIntentions();
+        mass.setMaxIntesionNum(maxIntentionNumber);
+
         massService.save(mass);
         Intention intention = intentionService.createIntention(intentionText, intentionCost);
         intention.setMass(mass);

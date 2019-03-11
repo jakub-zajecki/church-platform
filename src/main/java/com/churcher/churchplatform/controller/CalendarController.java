@@ -1,5 +1,7 @@
 package com.churcher.churchplatform.controller;
 
+import com.churcher.churchplatform.converter.DefaultMassTimeConverter;
+import com.churcher.churchplatform.dto.MassTimeDto;
 import com.churcher.churchplatform.enums.DayType;
 import com.churcher.churchplatform.model.Church;
 import com.churcher.churchplatform.model.ChurchDay;
@@ -13,9 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CalendarController {
@@ -23,16 +26,14 @@ public class CalendarController {
     private CalendarService calendarService;
     private ChurchDayService churchDayService;
     private ChurchService churchService;
-    private HolidayMassTimeService holidayMassTimeService;
-    private NormalDayMassTimeService normalDayMassTimeService;
+    private DefaultMassTimeConverter defaultMassTimeConverter;
 
     @Autowired
-    public CalendarController(CalendarService calendarService, ChurchDayService churchDayService, ChurchService churchService, HolidayMassTimeService holidayMassTimeService, NormalDayMassTimeService normalDayMassTimeService) {
+    public CalendarController(CalendarService calendarService, ChurchDayService churchDayService, ChurchService churchService, DefaultMassTimeConverter defaultMassTimeConverter) {
         this.calendarService = calendarService;
         this.churchDayService = churchDayService;
         this.churchService = churchService;
-        this.holidayMassTimeService = holidayMassTimeService;
-        this.normalDayMassTimeService = normalDayMassTimeService;
+        this.defaultMassTimeConverter = defaultMassTimeConverter;
     }
 
     @GetMapping("/calendar")
@@ -71,9 +72,15 @@ public class CalendarController {
             timelist = church.getHolidayChurchDayList();
         }
 
+        List<MassTimeDto> massTimeDtos = new ArrayList<>();
+
+        timelist.forEach(time -> massTimeDtos.add(defaultMassTimeConverter.defaultMassTimeToMassTimeDto(time, day.getId(), dayType)));
+        massTimeDtos.sort(Comparator.comparing(MassTimeDto::getMassTime));
+
         model.addAttribute("church", church);
+        model.addAttribute("minIntentionCost", church.getMinIntencionCost());
         model.addAttribute("churchDay", day);
-        model.addAttribute("timeList", timelist);
+        model.addAttribute("timeList", massTimeDtos);
         return "dayPage";
     }
 }

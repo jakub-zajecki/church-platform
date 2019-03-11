@@ -140,13 +140,11 @@ public class ChurchMassController {
             localDate = LocalDate.parse(prev).minusDays(1);
         }
 
-
         Map<LocalDate, Holidays> holidaysMap = calendarService.createHolidays(localDate.getYear());
 
         boolean isHoliday = holidaysMap.containsKey(localDate);
 
         List<? extends DefaultMassTime> listDefaultMassTime = null;
-
 
         ChurchDay churchDay = churchDayService.findByLocalDateAndChurchId(localDate,1L);
         if(churchDay == null){
@@ -172,14 +170,12 @@ public class ChurchMassController {
 //
 //        churchDay.setMassList(lisadsad);
 
+        Church church = churchService.findChurchById(1L);
+
+        model.addAttribute("priestList", church.getPriestList());
         model.addAttribute("day",localDate);
-
         model.addAttribute("massTimeList", listDefaultMassTime);
-
-
         model.addAttribute("churchDay", churchDay );
-
-
 
         return "setmass-priest";
     }

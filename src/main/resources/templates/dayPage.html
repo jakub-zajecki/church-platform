@@ -9,12 +9,16 @@
 <h1 th:text="${church.churchName}">Church Name</h1>
 
 <form th:action="@{/saveIntention}" method="POST" th:object="${churchDay}">
+
     <div th:each="time : ${timeList}">
-        <input id="${time.id}" type="radio" name="time" th:value="${time.massTime}">
+
+        <input th:disabled="${time.createdIntentionsNumber} >= ${time.maxIntentionNumber}" th:id="${time.id}" type="radio" name="time" th:value="${time.massTime}">
         <label th:for="${time.id}" th:text="${time.massTime}"></label>
+
     </div>
+
     <textarea name="intentionText"></textarea>
-    <input type="number" name="intentionCost">
+    <input type="number" th:min="${minIntentionCost}" name="intentionCost">
 
     <input type="hidden" th:field="*{id}">
     <input type="hidden" th:field="*{localDate}">
