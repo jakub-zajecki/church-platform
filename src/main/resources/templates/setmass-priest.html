@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{../css/setmass-priest.css}"/>
+    <title>Set Mass Leader</title>
+</head>
+<body>
+
+
+<div class="setPriest" th:if="${churchDay} != null">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">
+
+                <form th:action="@{/setmass-priest}"><input name="prev" type="hidden" th:value="${day}">
+                    <input type="submit" value="Prev"></form></th>
+
+            <th scope="col" th:text="${day}" id="date2"></th>
+            <th scope="col">
+                <form th:action="@{/setmass-priest}"><input name="next" type="hidden" th:value="${day}">
+                <input type="submit" value="Next"></form>
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Mass Hours</th>
+            <th scope="col">Priest</th>
+            <th scope="col">Dodaj</th>
+            <th scope="col">Usuń</th>
+        </tr>
+
+        <tr th:each="time : ${churchDay.massList}">
+
+            <td th:text="${time.massTime}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+
+        <!--<tr th:each="time : ${churchDay.massList}" th:if="${churchDay.massList} != null">-->
+
+            <!--<td th:text="${churchDay.massList != null} ? ${time.massTime} : ''"></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+
+        <!--</tr>-->
+        <tr  th:each="massTime:${massTimeList}">
+            <td th:text="${massTime}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="setPriest" th:if="${churchDay} == null">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">
+
+                <form th:action="@{/setmass-priest}"><input name="prev" type="hidden" th:value="${day}">
+                    <input type="submit" value="Prev"></form></th>
+
+            <th scope="col" th:text="${day}" id="date2"></th>
+            <th scope="col">
+                <form th:action="@{/setmass-priest}"><input name="next" type="hidden" th:value="${day}">
+                    <input type="submit" value="Next"></form>
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Mass Hours</th>
+            <th scope="col">Priest</th>
+            <th scope="col">Dodaj</th>
+            <th scope="col">Usuń</th>
+        </tr>
+
+
+
+
+        <tr th:each="massTime:${massTimeList}">
+            <td th:text="${massTime.massTime}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
