@@ -85,9 +85,6 @@
             <th scope="col">Usuń</th>
         </tr>
 
-
-
-
         <tr th:each="massTime:${massTimeList}">
             <td th:text="${massTime.massTime}"></td>
             <td class="droptarget" ondragstart="dragStart(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
@@ -102,8 +99,8 @@
     </table>
 </div>
 
-<div class="droptarget" ondrop="dropBack(event)" ondragover="allowDrop(event)" th:each="priest : ${priestList}">
-    <div ondragstart="dragStart(event)" draggable="true" th:id="${priest.getId()}"
+<div ondrop="dropBack(event)" ondragover="allowDrop(event)" th:each="priest : ${priestList}">
+    <div class="initdroptarget" ondragstart="dragStart(event)" draggable="true" th:id="${priest.getId()}"
          th:text="${priest.name} + ' ' + ${priest.lastName}"></div>
 </div>
 
@@ -127,6 +124,11 @@
         event.preventDefault();
         var data = event.dataTransfer.getData("Text");
         var e1 =  document.getElementById(data);
+
+        console.log(e1.parentNode);
+        if(document.getElementsByClassName("initdroptarget") === e1.parentNode){
+            return;
+        }
         e1.parentNode.removeChild(e1);
     }
 
@@ -134,6 +136,10 @@
         event.preventDefault();
         event.dataTransfer.effectAllowed = "copy";
         var data = event.dataTransfer.getData("Text");
+
+        if(event.target.innerHTML !== ""){
+            return;
+        }
 
         var nodeCopy = document.getElementById(data).cloneNode(true);
         var id = 1;

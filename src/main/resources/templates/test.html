@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form enctype='application/json' method="POST" th:action="@{/json2}">
+    <input id="priest" type="hidden" name="pastoralVisit" value="">
+    <input type="submit" value="Send">
+</form>
+
+<script>
+    var pastoralVisit = {
+        dates : [{date: "2019-03-20", streets: ["Jedna", "Druga", "Kolejna"]},
+            {date: "2019-03-19", streets: ["Trzecia", "Czwarta"]}]
+    };
+
+    pastoralVisit.dates[0].streets.push("");
+
+    var jsonPastoralVisit = JSON.stringify(pastoralVisit);
+
+    var objectToSend = document.querySelector("#priest");
+    objectToSend.setAttribute("value", jsonPastoralVisit);
+
+</script>
+
+</body>
+</html>
